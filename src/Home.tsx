@@ -9,6 +9,8 @@ const Home = () => {
         {title: "LOTR3", body: " Body3", author: "Tolkien", id: 3}
     ]);
 
+    const [name, setName] = useState("mario");
+
     const handleDelete = (id) => {
         console.log(id)
         const filteredBlogs = blogs.filter(blog => blog.id !== id);
@@ -17,12 +19,16 @@ const Home = () => {
 
     useEffect(() => {
             console.log("Use effect usage!")
-        }
+            console.log(name);
+        }, [name]
     );
+    // if deps array is empty, useEffect function only runs after initial render
 
     return (
         <div className="home">
             <BlogList blogs={blogs} title={"Blogs List"} handleDelete={handleDelete}/>
+            <button onClick={() => setName("Luigi")}>Change name</button>
+            <p>{name}</p>
         </div>
     )
 }
