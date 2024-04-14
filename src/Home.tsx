@@ -1,7 +1,22 @@
+import {useState} from "react";
+import BlogList from "./BlogList.tsx";
+
 const Home = () => {
+
+    const [blogs, setBlogs] = useState([
+        {title: "LOTR1", body: " Body1", author: "Tolkien", id: 1},
+        {title: "Title2", body: " Body2", author: "Paulo", id: 2},
+        {title: "LOTR3", body: " Body3", author: "Tolkien", id: 3}
+    ]);
+
+    const handleDelete = (id) => {
+        console.log(id)
+        const filteredBlogs = blogs.filter(blog => blog.id !== id);
+        setBlogs(filteredBlogs);
+    }
     return (
         <div className="home">
-            <h2>HomePage</h2>
+            <BlogList blogs={blogs} title={"Blogs List"} handleDelete={handleDelete}/>
         </div>
     )
 }
