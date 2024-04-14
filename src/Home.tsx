@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import BlogList from "./BlogList.tsx";
 
 const Home = () => {
@@ -14,6 +14,12 @@ const Home = () => {
         const filteredBlogs = blogs.filter(blog => blog.id !== id);
         setBlogs(filteredBlogs);
     }
+
+    useEffect(() => {
+            console.log("Use effect usage!")
+        }
+    );
+
     return (
         <div className="home">
             <BlogList blogs={blogs} title={"Blogs List"} handleDelete={handleDelete}/>
