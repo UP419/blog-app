@@ -1,34 +1,9 @@
-import {useEffect, useState} from "react";
 import BlogList from "./BlogList.tsx";
+import useFetch from "./useFetch.tsx";
 
 const Home = () => {
 
-    const [blogs, setBlogs] = useState(null);
-    const [isPending, setIsPending] = useState(true)
-    const [error, setError] = useState(null)
-
-    // json server for database - npx json-server --watch data/db.json --port 8000
-
-    useEffect(() => {
-            fetch("http://localhost:8000/blogs")
-                .then(res => {
-                    if (!res.ok) {
-                        throw Error("Something wrong!");
-                    }
-                    return res.json()
-                })
-                .then(data => {
-                    setBlogs(data);
-                    setIsPending(false);
-                    setError(null);
-                })
-                .catch(err => {
-                    setError(err.message);
-                    setIsPending(false);
-                })
-        }, []
-    );
-    // if deps array is empty, useEffect function only runs after initial render
+    const {data: blogs, isPending, error} = useFetch("http://localhost:8000/blogs")
 
     return (
         <div className="home">
