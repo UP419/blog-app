@@ -3,32 +3,38 @@ import BlogList from "./BlogList.tsx";
 
 const Home = () => {
 
-    const [blogs, setBlogs] = useState([
-        {title: "LOTR1", body: " Body1", author: "Tolkien", id: 1},
-        {title: "Title2", body: " Body2", author: "Paulo", id: 2},
-        {title: "LOTR3", body: " Body3", author: "Tolkien", id: 3}
-    ]);
+    const [blogs, setBlogs] = useState(null);
+    const [isPending, setIsPending] = useState(true)
+    const [error, setError] = useState(null)
 
-    const [name, setName] = useState("mario");
-
-    const handleDelete = (id) => {
-        console.log(id)
-        const filteredBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(filteredBlogs);
-    }
+    // json server for database - npx json-server --watch data/db.json --port 8000
 
     useEffect(() => {
-            console.log("Use effect usage!")
-            console.log(name);
-        }, [name]
+            fetch("http://localhost:8000/blogs")
+                .then(res => {
+                    if (!res.ok) {
+                        throw Error("Something wrong!");
+                    }
+                    return res.json()
+                })
+                .then(data => {
+                    setBlogs(data);
+                    setIsPending(false);
+                    setError(null);
+                })
+                .catch(err => {
+                    setError(err.message);
+                    setIsPending(false);
+                })
+        }, []
     );
     // if deps array is empty, useEffect function only runs after initial render
 
     return (
         <div className="home">
-            <BlogList blogs={blogs} title={"Blogs List"} handleDelete={handleDelete}/>
-            <button onClick={() => setName("Luigi")}>Change name</button>
-            <p>{name}</p>
+            {error && <div>{error}</div>}
+            {isPending && <div>Loading...</div>}
+            {blogs && <BlogList blogs={blogs} title={"Blogs List"}/>}
         </div>
     )
 }

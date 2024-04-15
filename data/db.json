@@ -1,0 +1,7 @@
+{
+  "blogs": [
+    {"title": "LOTR1", "body": " Body1", "author": "Tolkien", "id": 1},
+    {"title": "Title2", "body": " Body2", "author": "Paulo", "id": 2},
+    {"title": "LOTR3", "body": " Body3", "author": "Tolkien", "id": 3}
+  ]
+}
