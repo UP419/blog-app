@@ -9,7 +9,9 @@ const useFetch = (url) => {
     // json server for database - npx json-server --watch data/db.json --port 8000
 
     useEffect(() => {
-            fetch(url)
+            const abortCont = new AbortController();
+
+            fetch(url, {signal: abortCont.signal})
                 .then(res => {
                     if (!res.ok) {
                         throw Error("Something wrong!");
@@ -22,9 +24,14 @@ const useFetch = (url) => {
                     setError(null);
                 })
                 .catch(err => {
-                    setError(err.message);
-                    setIsPending(false);
+                    if (err.name === "AbortError") {
+                        console.log("Fetch aborted")
+                    } else {
+                        setError(err.message);
+                        setIsPending(false);
+                    }
                 })
+            return () => abortCont.abort();
         }, [url]
     );
     // if deps array is empty, useEffect function only runs after initial render
