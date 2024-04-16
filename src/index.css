@@ -87,7 +87,7 @@
     display: block;
 }
 
-.new-blog button {
+.new-blog button, .blog-details button {
     background-color: #f1356d;
     color: #fff;
     border: 0;
