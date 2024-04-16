@@ -95,3 +95,12 @@
     border-radius: 8px;
     cursor: pointer;
 }
+
+.not-found h1 {
+    color: #f1356d;
+}
+
+.not-found a {
+    color: #f1356d;
+    text-decoration: none;
+}
