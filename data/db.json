@@ -1,7 +1,40 @@
 {
   "blogs": [
-    {"title": "LOTR1", "body": " Body1", "author": "Tolkien", "id": 1},
-    {"title": "Title2", "body": " Body2", "author": "Paulo", "id": 2},
-    {"title": "LOTR3", "body": " Body3", "author": "Tolkien", "id": 3}
+    {
+      "title": "LOTR1",
+      "body": " Body1",
+      "author": "Tolkien",
+      "id": "1"
+    },
+    {
+      "title": "Title2",
+      "body": " Body2",
+      "author": "Paulo",
+      "id": "2"
+    },
+    {
+      "title": "LOTR3",
+      "body": " Body3",
+      "author": "Tolkien",
+      "id": "3"
+    },
+    {
+      "id": "64ac",
+      "title": "wevwerg",
+      "body": "rwgwg",
+      "author": "mario"
+    },
+    {
+      "id": "7b17",
+      "title": "cewoweif",
+      "body": "oiewnfowef",
+      "author": "Paulo"
+    },
+    {
+      "id": "729f",
+      "title": "cweiucb",
+      "body": "cieubrvewrv",
+      "author": "Orwell"
+    }
   ]
 }
